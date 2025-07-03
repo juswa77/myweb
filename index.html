@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karen's Cat Corner ☕</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/cat-icon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+  <div class="bubbles-container"></div>
+
+  <div class="wrapper">
+    <header class="hero-header">
+      <div class="hero-overlay">
+        <h1><span class="logo-text">Karen's</span> Cat Corner ☕ </h1>
+        <p>Brewing Life one paw at a time ☕🐱</p>
+        <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+      </div>
+    </header>
+
+    <nav class="category-tabs">
+      <button class="tab-button active" data-category="personal">👤 Personal</button>
+      <button class="tab-button" data-category="lifestyle">📷 Lifestyle</button>
+      <button class="tab-button" data-category="portfolio">🛠️ Portfolio</button>
+    </nav>
+
+    <main class="main-content">
+      <section class="card-section" data-category="personal">
+        <div class="card-group">
+          <div class="card-wrapper">
+            <a href="me.html" class="card-link">
+              <section class="card">
+                <h2>Me</h2>
+                <p>Know more about who I am, what I love, and how I live life fully.</p>
+              </section>
+            </a>
+          </div>
+          <div class="card-wrapper">
+            <a href="#" class="card-link">
+              <section class="card">
+                <h2>My Achievements</h2>
+                <p>Proud moments and milestones that shaped my journey and growth.</p>
+              </section>
+            </a>
+          </div>
+          <div class="card-wrapper">
+            <a href="#" class="card-link">
+              <section class="card">
+                <h2>Skin Care Tips</h2>
+                <p>Simple and effective skin care habits that work for me — and may work for you!</p>
+              </section>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card-section hidden" data-category="lifestyle">
+        <div class="card-group">
+          <div class="card-wrapper">
+            <a href="#" class="card-link">
+              <section class="card">
+                <h2>Gallery</h2>
+                <p>A collection of moments, memories, and snapshots I cherish.</p>
+              </section>
+            </a>
+          </div>
+          <div class="card-wrapper">
+            <a href="#" class="card-link">
+              <section class="card">
+                <h2>Travel Places</h2>
+                <p>Explore the wonderful places I've been to and the stories behind them.</p>
+              </section>
+            </a>
+          </div>
+          <div class="card-wrapper">
+            <a href="#" class="card-link">
+              <section class="card">
+                <h2>Foods</h2>
+                <p>My favorite dishes, homemade recipes, and food adventures.</p>
+              </section>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card-section hidden" data-category="portfolio">
+        <div class="card-group">
+          <div class="card-wrapper">
+            <a href="#" class="card-link">
+              <section class="card">
+                <h2>My Works</h2>
+                <p>From passion projects to professional pieces — here’s what I’ve built.</p>
+              </section>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Karen's Coffee & Cats. Made with love and cat hair.</p>
+    </footer>
+  </div>
+
+  
+</body>
+<script src="script.js"></script>
+
+</html>
