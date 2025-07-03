@@ -11,6 +11,7 @@ document.querySelectorAll('.card').forEach(card => {
 
     // Check if dark mode is active to apply appropriate shadow color
     const isDarkMode = document.body.classList.contains('dark-mode');
+    // Adjusted shadow for 3D tilt in dark mode for better visibility
     const shadowColor = isDarkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)'; // White for dark, black for light
 
     card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
@@ -20,14 +21,20 @@ document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('mouseleave', () => {
     // Revert to original transform and shadow based on current mode
     const isDarkMode = document.body.classList.contains('dark-mode');
-    const defaultShadow = isDarkMode ? '0 4px 10px rgba(255, 255, 255, 0.1)' : '0 4px 10px rgba(0, 0, 0, 0.1)'; // White for dark, black for light
+    const defaultShadow = isDarkMode ? '0 8px 30px rgba(0, 0, 0, 0.5)' : '0 8px 24px rgba(0, 0, 0, 0.2)';
 
     card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
     card.style.boxShadow = defaultShadow;
   });
 
   card.addEventListener('mouseenter', () => {
+    // Ensure smooth transition for transform and box-shadow on mouseenter
     card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+  });
+
+  // Prevent context menu on long press for mobile compatibility
+  card.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
   });
 });
 
@@ -46,7 +53,7 @@ function createBubble() {
   }, 12000);
 }
 
-setInterval(createBubble, 105);
+setInterval(createBubble, 400);
 
 // Tab functionality and Dark Mode logic
 document.addEventListener('DOMContentLoaded', () => {
@@ -64,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.remove('dark-mode');
       darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for light mode
     }
-    // Re-apply correct card shadows immediately after mode change
+    // Re-apply correct initial card shadows immediately after mode change
     document.querySelectorAll('.card').forEach(card => {
         const currentShadow = isDarkMode ? '0 4px 10px rgba(255, 255, 255, 0.1)' : '0 4px 10px rgba(0, 0, 0, 0.1)';
         card.style.boxShadow = currentShadow;
