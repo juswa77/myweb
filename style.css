@@ -2,9 +2,11 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  /* Keeping overflow-x: hidden as per your latest provided CSS.
-     If you want vertical scrolling on content overflow, change this to 'overflow-y: auto;' or 'overflow: auto;'. */
-  overflow-x: hidden;
+  /* Changed to 'overflow: hidden;' to prevent both horizontal and vertical scrolling.
+     If you need content to be scrollable when it exceeds screen height,
+     you might need to apply 'overflow-y: auto;' to a specific content container
+     instead of the entire body. */
+  overflow: hidden;
 }
 
 body {
@@ -53,9 +55,9 @@ body.dark-mode header p {
   justify-content: center;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
-  padding: 0 1rem; /* Adjusted padding for mobile */
+  padding: 0 1rem;
   flex-wrap: wrap;
-  gap: 10px; /* Consistent gap */
+  gap: 10px;
 }
 
 .tab-button {
@@ -149,7 +151,7 @@ body.dark-mode .card {
 
 body.dark-mode .card:hover {
   background-color: rgba(70, 70, 70, 0.9); /* Darker hover effect */
-  box-shadow: 0 0 80px 30px rgba(255, 255, 255, 1); /* Significantly increased intensity, blur, and spread */
+  box-shadow: 0 0 60px 20px rgba(255, 255, 255, 1); /* Significantly increased intensity, blur, and spread */
 }
 
 
@@ -231,54 +233,4 @@ body.dark-mode .dark-mode-toggle {
 
 body.dark-mode .dark-mode-toggle:hover {
   background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Responsive adjustments for the header */
-@media (max-width: 768px) {
-  header {
-    padding: 2rem 1rem; /* Slightly reduced padding for tablets/larger mobiles */
-  }
-  header h1 {
-    font-size: 2.2rem; /* Adjusted for tablet */
-  }
-  header p {
-    font-size: 1rem; /* Adjusted for tablet */
-  }
-  .hero-overlay {
-    padding: 1.8rem 1rem; /* Adjusted for tablet */
-    border-radius: 15px;
-  }
-  .main-content {
-    padding: 1.5rem; /* Reduced padding for main content on tablets */
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.8rem; /* Further reduced for small mobiles */
-  }
-  header p {
-    font-size: 0.9rem; /* Further reduced for small mobiles */
-  }
-  .hero-overlay {
-    padding: 1.2rem 0.8rem; /* Further reduced for small mobiles */
-    border-radius: 10px;
-  }
-  .main-content {
-    padding: 1rem; /* Reduced padding for main content on small mobiles */
-  }
-  .card h2 {
-    font-size: 1.2rem; /* Smaller font for card titles on small mobiles */
-  }
-  .card p {
-    font-size: 0.85rem; /* Smaller font for card text on small mobiles */
-  }
-  .category-tabs {
-    padding: 0 0.5rem; /* Reduced padding for tabs on small mobiles */
-    gap: 8px; /* Slightly smaller gap */
-  }
-  .tab-button {
-    padding: 0.6rem 1rem; /* Smaller padding for tab buttons */
-    font-size: 0.85rem; /* Smaller font for tab buttons */
-  }
 }
