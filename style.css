@@ -438,7 +438,7 @@ body.dark-mode .speech-bubble::after {
     left: 10px; /* Changed from right to left */
   }
   .floating-cat {
-    width: 100px;
+    width: 80;
   }
   .speech-bubble {
     max-width: 150px;
