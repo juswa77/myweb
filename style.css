@@ -1009,13 +1009,12 @@ body.dark-mode .floating-nav-button:hover {
 /* Responsive adjustments for floating navigation */
 @media (max-width: 768px) {
   .floating-nav-container {
-    right: 10px; /* Closer to the edge on smaller screens */
-    bottom: 20px; /* Move to bottom right to avoid overlaying content */
-    transform: none; /* Remove vertical centering transform */
+    right: 10px; /* Position on the right side */
+    bottom: 20px; /* Keep at the bottom */
+    left: auto; /* Remove left positioning */
+    transform: none; /* Remove horizontal centering transform */
     flex-direction: row; /* Arrange buttons horizontally */
-    width: auto;
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for horizontal centering */
+    width: auto; /* Allow content to dictate width */
     gap: 8px; /* Smaller gap */
     padding: 5px; /* Add some padding */
     background: rgba(255, 255, 255, 0.1); /* Slight background for visibility */
@@ -1039,6 +1038,8 @@ body.dark-mode .floating-nav-button:hover {
     bottom: 10px; /* Even closer to the bottom */
     gap: 5px; /* Smaller gap */
     padding: 3px;
+    right: 10px; /* Ensure it stays on the right */
+    left: auto; /* Ensure no left positioning */
   }
   .floating-nav-button {
     width: 35px;
@@ -1046,3 +1047,4 @@ body.dark-mode .floating-nav-button:hover {
     font-size: 0.9rem;
   }
 }
+
