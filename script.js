@@ -1,4 +1,4 @@
-// 3D tilt effect
+// 3D tilt effect for .card elements (used on index.html)
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
@@ -9,18 +9,16 @@ document.querySelectorAll('.card').forEach(card => {
     const rotateX = -(y - centerY) / 10;
     const rotateY = (x - centerX) / 10;
 
-    // Check if dark mode is active to apply appropriate shadow color
     const isDarkMode = document.body.classList.contains('dark-mode');
-    const shadowColor = isDarkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)'; // White for dark, black for light
+    const shadowColor = isDarkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)';
 
     card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
     card.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 20px ${shadowColor}`;
   });
 
   card.addEventListener('mouseleave', () => {
-    // Revert to original transform and shadow based on current mode
     const isDarkMode = document.body.classList.contains('dark-mode');
-    const defaultShadow = isDarkMode ? '0 4px 10px rgba(255, 255, 255, 0.1)' : '0 4px 10px rgba(0, 0, 0, 0.1)'; // White for dark, black for light
+    const defaultShadow = isDarkMode ? '0 4px 10px rgba(255, 255, 255, 0.1)' : '0 4px 10px rgba(0, 0, 0, 0.1)';
 
     card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
     card.style.boxShadow = defaultShadow;
@@ -31,7 +29,7 @@ document.querySelectorAll('.card').forEach(card => {
   });
 });
 
-// Floating coffee bubbles
+// Floating coffee bubbles (universal)
 function createBubble() {
   const bubble = document.createElement('div');
   bubble.classList.add('bubble');
@@ -45,150 +43,167 @@ function createBubble() {
     bubble.remove();
   }, 12000);
 }
-
 setInterval(createBubble, 105);
 
-// Tab functionality and Dark Mode logic
+
+// Function to apply dark mode (declared globally for initial load check)
+const applyDarkMode = (isDarkMode) => {
+  const body = document.body;
+  const darkModeToggle = document.getElementById('darkModeToggle');
+
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+    if (darkModeToggle) darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+  } else {
+    body.classList.remove('dark-mode');
+    if (darkModeToggle) darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+  }
+
+  // Re-apply correct card shadows immediately after mode change for index.html cards
+  document.querySelectorAll('.card').forEach(card => {
+    const currentShadow = isDarkMode ? '0 4px 10px rgba(255, 255, 255, 0.1)' : '0 4px 10px rgba(0, 0, 0, 0.1)';
+    card.style.boxShadow = currentShadow;
+  });
+
+  // Handle about-me-container shadow if it exists on the page
+  const aboutMeCard = document.querySelector('.about-me-container');
+  if (aboutMeCard) {
+    const currentAboutMeShadow = isDarkMode ? '0 8px 30px rgba(0, 0, 0, 0.5)' : '0 8px 30px rgba(0, 0, 0, 0.2)';
+    aboutMeCard.style.boxShadow = currentAboutMeShadow;
+  }
+  // No specific shadow adjustment needed for .skincare-container as it uses CSS for dark mode
+};
+
+// Check for saved dark mode preference on load (runs immediately)
+const savedDarkMode = localStorage.getItem('darkMode');
+if (savedDarkMode === 'enabled') {
+  applyDarkMode(true);
+} else {
+  applyDarkMode(false); // Ensure light mode is applied if no preference or disabled
+}
+
+
+// All other DOM-related logic runs after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   const tabButtons = document.querySelectorAll('.tab-button');
   const cardSections = document.querySelectorAll('.card-section');
   const darkModeToggle = document.getElementById('darkModeToggle');
-  const body = document.body;
-
-  // Function to apply dark mode based on preference
-  const applyDarkMode = (isDarkMode) => {
-    if (isDarkMode) {
-      body.classList.add('dark-mode');
-      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for dark mode
-    } else {
-      body.classList.remove('dark-mode');
-      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for light mode
-    }
-    // Re-apply correct card shadows immediately after mode change
-    document.querySelectorAll('.card').forEach(card => {
-        const currentShadow = isDarkMode ? '0 4px 10px rgba(255, 255, 255, 0.1)' : '0 4px 10px rgba(0, 0, 0, 0.1)';
-        card.style.boxShadow = currentShadow;
-    });
-  };
-
-  // Check for saved dark mode preference on load
-  const savedDarkMode = localStorage.getItem('darkMode');
-  if (savedDarkMode === 'enabled') {
-    applyDarkMode(true);
-  } else {
-    applyDarkMode(false); // Ensure light mode is applied if no preference or disabled
-  }
+  const body = document.body; // Re-declare for scope within DOMContentLoaded
 
   // Dark mode toggle event listener
-  darkModeToggle.addEventListener('click', () => {
-    if (body.classList.contains('dark-mode')) {
-      applyDarkMode(false);
-      localStorage.setItem('darkMode', 'disabled');
-    } else {
-      applyDarkMode(true);
-      localStorage.setItem('darkMode', 'enabled');
-    }
-  });
+  if (darkModeToggle) { // Ensure button exists before adding listener
+    darkModeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark-mode')) {
+        applyDarkMode(false);
+        localStorage.setItem('darkMode', 'disabled');
+      } else {
+        applyDarkMode(true);
+        localStorage.setItem('darkMode', 'enabled');
+      }
+    });
+  }
 
   // Existing tab functionality
   tabButtons.forEach(button => {
     button.addEventListener('click', () => {
       const category = button.dataset.category;
 
-      // Remove 'active' from all buttons
       tabButtons.forEach(btn => btn.classList.remove('active'));
-      // Add 'active' to the clicked button
       button.classList.add('active');
 
-      // Hide all card sections
       cardSections.forEach(section => section.classList.add('hidden'));
-
-      // Show the selected card section
       document.querySelector(`.card-section[data-category="${category}"]`).classList.remove('hidden');
     });
   });
 
-  // Floating Cat Logic
-  const floatingCat = document.getElementById('floatingCat');
-  const catSpeechBubble = document.getElementById('catSpeechBubble');
+  // --- Floating Cat Logic (Generalized) ---
+  // This function handles the floating cat's message display for any page
+  function setupFloatingCat(messages) {
+    const floatingCat = document.getElementById('floatingCat');
+    const catSpeechBubble = document.getElementById('catSpeechBubble');
 
-  const messages = [
-    "Meow! Welcome to Karen's corner!",
-    "Hope you're having a purr-fect day!",
-    "Stay pawsitive!",
-    "Did you know Karen loves cats? That's me!",
-    "Karen enjoys a good scoop of ice cream!",
-    "Eating is one of Karen's favorite hobbies!",
-    "Psst... Karen loves to annoy her BF! 😉",
-    "You're doing great, keep going!",
-    "A little progress each day adds up to big results.",
-    "Believe in yourself, just like Karen believes in naps!",
-    "Don't forget to smile today!",
-    "Have a meow-tastic time exploring!",
-    "When Karen's bored, she alters her hair!",
-    "Karen loves sending random reels to her BF on all social media!",
-    "Karen's love language is literally physical!",
-    "She really, really loves her man!",
-    "Karen keeps asking for night outs, knowing it'll probably never happen! 😂",
-    "She has a lot of cats in their house!",
-    "When Karen sees a cat, her eyes turn into paw-shaped eyes! 🐾"
-  ];
+    if (floatingCat && catSpeechBubble) {
+      let messageTimeout;
 
-  let messageTimeout;
+      function showNextMessage() {
+        clearTimeout(messageTimeout);
 
-  function showRandomMessage() { // Renamed to better reflect its new behavior
-    clearTimeout(messageTimeout); // Clear any existing timeout
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        catSpeechBubble.textContent = messages[randomIndex];
+        catSpeechBubble.style.opacity = '1';
+        catSpeechBubble.style.visibility = 'visible';
 
-    // Pick a new random index every time
-    const randomIndex = Math.floor(Math.random() * messages.length);
-    catSpeechBubble.textContent = messages[randomIndex];
-    catSpeechBubble.style.opacity = '1';
-    catSpeechBubble.style.visibility = 'visible';
+        messageTimeout = setTimeout(() => {
+          catSpeechBubble.style.opacity = '0';
+          catSpeechBubble.style.visibility = 'hidden';
+        }, 7000); // 7 seconds
+      }
 
-    // Hide the message after 7 seconds
-    messageTimeout = setTimeout(() => {
-      catSpeechBubble.style.opacity = '0';
-      catSpeechBubble.style.visibility = 'hidden';
-    }, 7000);
+      floatingCat.addEventListener('click', showNextMessage);
+      showNextMessage(); // Initial message on load
+    }
   }
 
-  // Show a message when the cat is clicked
-  floatingCat.addEventListener('click', showRandomMessage);
+  // Determine which page we are on and apply specific logic
+  const isIndexPage = document.querySelector('.card-section[data-category="personal"]'); // Unique to index.html
+  const isMePage = document.querySelector('.about-me-container'); // Unique to me.html
+  const isSkincarePage = document.querySelector('.skincare-container'); // Unique to skincare.html
 
-  // Show an initial message on load
-  showRandomMessage();
+  if (isIndexPage) {
+    const indexMessages = [
+      "Meow! Welcome to Karen's corner!",
+      "Hope you're having a purr-fect day!",
+      "Stay pawsitive!",
+      "Did you know Karen loves cats? That's me!",
+      "Karen enjoys a good scoop of ice cream!",
+      "Eating is one of Karen's favorite hobbies!",
+      "Psst... Karen loves to annoy her BF! 😉",
+      "You're doing great, keep going!",
+      "A little progress each day adds up to big results.",
+      "Believe in yourself, just like Karen believes in naps!",
+      "Don't forget to smile today!",
+      "Have a meow-tastic time exploring!",
+      "When Karen's bored, she alters her hair!",
+      "Karen loves sending random reels to her BF on all social media!",
+      "Karen's love language is literally physical!",
+      "She really, really loves her man!",
+      "Karen keeps asking for night outs, knowing it'll probably never happen! 😂",
+      "She has a lot of cats in their house!",
+      "When Karen sees a cat, her eyes turn into paw-shaped eyes! 🐾"
+    ];
+    setupFloatingCat(indexMessages);
+  } else if (isMePage) {
+    const meMessages = [
+      "This is what I've been telling you!"
+    ];
+    setupFloatingCat(meMessages);
+  } else if (isSkincarePage) {
+    const skincareMessages = [
+      "Remember to hydrate for glowing skin!",
+      "SPF is your best friend!",
+      "Gentle cleansing is key!",
+      "Consistency is crucial in skincare!",
+      "Listen to your skin's needs!",
+      "Don't forget your neck, meow!"
+    ];
+    setupFloatingCat(skincareMessages);
+
+    // --- Floating Navigation Logic for skincare.html ---
+    const floatingNavButtons = document.querySelectorAll('.floating-nav-button');
+    if (floatingNavButtons.length > 0) {
+        floatingNavButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default anchor jump
+                const targetId = button.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth' // Smooth scroll to the section
+                    });
+                }
+            });
+        });
+    }
+  }
 });
-
-
-// Floating Cat Logic for me.html
-const floatingCat = document.getElementById('floatingCat');
-const catSpeechBubble = document.getElementById('catSpeechBubble');
-
-const messages = [
-  "This is what I've been telling you!" // Corrected grammar
-];
-
-let messageTimeout;
-
-function showRandomMessage() {
-  clearTimeout(messageTimeout); // Clear any existing timeout
-
-  const randomIndex = Math.floor(Math.random() * messages.length);
-  catSpeechBubble.textContent = messages[randomIndex];
-  catSpeechBubble.style.opacity = '1';
-  catSpeechBubble.style.visibility = 'visible';
-
-  // Hide the message after 7 seconds
-  messageTimeout = setTimeout(() => {
-    catSpeechBubble.style.opacity = '0';
-    catSpeechBubble.style.visibility = 'hidden';
-  }, 7000);
-}
-
-// Show a message when the cat is clicked
-if (floatingCat) { // Ensure floatingCat exists before adding event listener
-  floatingCat.addEventListener('click', showRandomMessage);
-}
-
-// Show an initial message on load
-showRandomMessage();
