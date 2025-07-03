@@ -32,10 +32,10 @@ document.querySelectorAll('.card').forEach(card => {
     card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
   });
 
-  // Prevent context menu on long press for mobile compatibility
-  card.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-  });
+  // Removed: Prevent context menu on long press for mobile compatibility
+  // card.addEventListener('contextmenu', (e) => {
+  //   e.preventDefault();
+  // });
 });
 
 // Floating coffee bubbles
@@ -53,7 +53,7 @@ function createBubble() {
   }, 12000);
 }
 
-setInterval(createBubble, 400);
+setInterval(createBubble, 110);
 
 // Tab functionality and Dark Mode logic
 document.addEventListener('DOMContentLoaded', () => {
