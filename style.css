@@ -669,7 +669,7 @@ body.dark-mode .skincare-card .icon {
 /* Responsive adjustments for skincare.html */
 @media (max-width: 768px) {
   .skincare-container {
-    margin: 2rem auto;
+     margin: 0.5rem 1.5rem 0.5rem;
     padding: 1.5rem;
   }
   .skincare-container h1 {
@@ -691,7 +691,7 @@ body.dark-mode .skincare-card .icon {
 
 @media (max-width: 480px) {
   .skincare-container {
-    margin: 0.5rem 1.5rem 0.5rem;
+    margin: 0.5rem -3rem 0.5rem;
     padding: 0.8rem;
     border-radius: 15px;
   }
