@@ -107,13 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector(`.card-section[data-category="${category}"]`).classList.remove('hidden');
     });
   });
-});
 
-
-
-
-
-    // Floating Cat Logic
+  // Floating Cat Logic
   const floatingCat = document.getElementById('floatingCat');
   const catSpeechBubble = document.getElementById('catSpeechBubble');
 
@@ -160,8 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Show a message when the cat is clicked
   floatingCat.addEventListener('click', showRandomMessage);
 
-  // Removed: Automatic message change interval
-  // setInterval(showRandomMessage, 15000);
-
   // Show an initial message on load
   showRandomMessage();
+});
