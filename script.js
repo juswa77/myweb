@@ -158,3 +158,37 @@ document.addEventListener('DOMContentLoaded', () => {
   // Show an initial message on load
   showRandomMessage();
 });
+
+
+// Floating Cat Logic for me.html
+const floatingCat = document.getElementById('floatingCat');
+const catSpeechBubble = document.getElementById('catSpeechBubble');
+
+const messages = [
+  "This is what I've been telling you!" // Corrected grammar
+];
+
+let messageTimeout;
+
+function showRandomMessage() {
+  clearTimeout(messageTimeout); // Clear any existing timeout
+
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  catSpeechBubble.textContent = messages[randomIndex];
+  catSpeechBubble.style.opacity = '1';
+  catSpeechBubble.style.visibility = 'visible';
+
+  // Hide the message after 7 seconds
+  messageTimeout = setTimeout(() => {
+    catSpeechBubble.style.opacity = '0';
+    catSpeechBubble.style.visibility = 'hidden';
+  }, 7000);
+}
+
+// Show a message when the cat is clicked
+if (floatingCat) { // Ensure floatingCat exists before adding event listener
+  floatingCat.addEventListener('click', showRandomMessage);
+}
+
+// Show an initial message on load
+showRandomMessage();

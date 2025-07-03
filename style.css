@@ -446,3 +446,132 @@ body.dark-mode .speech-bubble::after {
     padding: 6px 10px;
   }
 }
+
+
+
+
+
+
+    /* --- Styles for me.html content --- */
+.about-me-container {
+  max-width: 800px;
+  margin: 4rem auto 2rem auto; /* Adjusted top margin */
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Reverted to a standard shadow */
+  text-align: center;
+  color: #4b2e2e; /* Default light mode text color */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Simplified transition */
+  animation: floatAnimation 3s ease-in-out infinite; /* Added gentle floating animation */
+}
+
+body.dark-mode .about-me-container {
+  background: rgba(50, 50, 50, 0.4);
+  color: #f0f0f0; /* Dark mode text color */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.about-me-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: inherit; /* Inherit color from parent for dark mode transition */
+}
+
+.about-me-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(193, 154, 107, 0.8);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .about-me-container img {
+  border-color: rgba(60, 60, 60, 0.8);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.about-me-container p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: inherit; /* Inherit color from parent for dark mode transition */
+}
+
+.back-button {
+  background-color: rgba(193, 154, 107, 0.8);
+  color: #fffaf0;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-decoration: none; /* Remove underline from anchor tag */
+  display: inline-block; /* Allow padding and margin */
+  margin-top: 1rem;
+}
+
+.back-button:hover {
+  background-color: rgba(111, 78, 55, 0.9);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .back-button {
+  background-color: rgba(60, 60, 60, 0.8);
+  color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .back-button:hover {
+  background-color: rgba(80, 80, 80, 0.9);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Responsive adjustments for me.html */
+@media (max-width: 768px) {
+  .about-me-container {
+    margin: 2rem auto;
+    padding: 1.5rem;
+  }
+  .about-me-container h1 {
+    font-size: 2rem;
+  }
+  .about-me-container img {
+    width: 150px;
+    height: 150px;
+  }
+  .about-me-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-me-container {
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 15px;
+  }
+  .about-me-container h1 {
+    font-size: 1.8rem;
+  }
+  .about-me-container img {
+    width: 120px;
+    height: 120px;
+  }
+  .about-me-container p {
+    font-size: 0.9rem;
+  }
+  .back-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
