@@ -352,8 +352,8 @@ footer {
 
 /* Floating Cat Feature Styles */
 .floating-cat-container {
-  position: absolute;
-  bottom: 2px; /* Adjust as needed */
+  position: fixed;
+  bottom: 50px; /* Adjust as needed */
   left: 50px; /* Changed from right to left */
   z-index: 100; /* Ensure it's above other content */
   display: flex;
@@ -419,7 +419,7 @@ body.dark-mode .speech-bubble::after {
 /* Responsive adjustments for floating cat */
 @media (max-width: 768px) {
   .floating-cat-container {
-    bottom: 20px;
+    bottom: 15px;
     left: 15px; /* Changed from right to left */
   }
   .floating-cat {
@@ -434,7 +434,7 @@ body.dark-mode .speech-bubble::after {
 
 @media (max-width: 480px) {
   .floating-cat-container {
-    bottom: 10px;
+    bottom: 20px;
     left: 10px; /* Changed from right to left */
   }
   .floating-cat {
