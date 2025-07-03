@@ -108,3 +108,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+
+
+
+    // Floating Cat Logic
+  const floatingCat = document.getElementById('floatingCat');
+  const catSpeechBubble = document.getElementById('catSpeechBubble');
+
+  const messages = [
+    "Meow! Welcome to Karen's corner!",
+    "Hope you're having a purr-fect day!",
+    "Stay pawsitive!",
+    "Did you know Karen loves cats? That's me!",
+    "Karen enjoys a good scoop of ice cream!",
+    "Eating is one of Karen's favorite hobbies!",
+    "Psst... Karen loves to annoy her BF! 😉",
+    "You're doing great, keep going!",
+    "A little progress each day adds up to big results.",
+    "Believe in yourself, just like Karen believes in naps!",
+    "Don't forget to smile today!",
+    "Have a meow-tastic time exploring!",
+    "When Karen's bored, she alters her hair!",
+    "Karen loves sending random reels to her BF on all social media!",
+    "Karen's love language is literally physical!",
+    "She really, really loves her man!",
+    "Karen keeps asking for night outs, knowing it'll probably never happen! 😂",
+    "She has a lot of cats in their house!",
+    "When Karen sees a cat, her eyes turn into paw-shaped eyes! 🐾"
+  ];
+
+  let messageTimeout;
+
+  function showRandomMessage() { // Renamed to better reflect its new behavior
+    clearTimeout(messageTimeout); // Clear any existing timeout
+
+    // Pick a new random index every time
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    catSpeechBubble.textContent = messages[randomIndex];
+    catSpeechBubble.style.opacity = '1';
+    catSpeechBubble.style.visibility = 'visible';
+
+    // Hide the message after 7 seconds
+    messageTimeout = setTimeout(() => {
+      catSpeechBubble.style.opacity = '0';
+      catSpeechBubble.style.visibility = 'hidden';
+    }, 7000);
+  }
+
+  // Show a message when the cat is clicked
+  floatingCat.addEventListener('click', showRandomMessage);
+
+  // Removed: Automatic message change interval
+  // setInterval(showRandomMessage, 15000);
+
+  // Show an initial message on load
+  showRandomMessage();
