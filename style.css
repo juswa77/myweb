@@ -1367,7 +1367,7 @@ body.dark-mode .gallery-item:hover {
 @media (max-width: 768px) { /* Tablets and smaller */
   .gallery-container {
     margin: 2rem auto;
-    padding: 1.5rem;
+    padding: 1.2rem; /* Slightly reduced padding */
   }
   .gallery-container h2 {
     font-size: 2.2rem;
@@ -1376,21 +1376,21 @@ body.dark-mode .gallery-item:hover {
     font-size: 1rem;
   }
   .photo-grid {
-    grid-template-columns: 1fr; /* Single column on tablets and smaller */
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr); /* Now 3 columns on tablets and smaller */
+    gap: 8px; /* Reduced gap for tighter fit */
   }
   .gallery-item img {
-    height: 250px; /* Adjusted height for tablets */
+    height: 150px; /* Adjusted height for 3 columns on tablets */
   }
   .overlay .caption {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Adjusted font size for smaller images */
   }
 }
 
 @media (max-width: 480px) { /* Smaller phones */
   .gallery-container {
     margin: 1rem auto;
-    padding: 1rem;
+    padding: 0.8rem; /* Further reduced padding for very small screens */
     border-radius: 15px;
   }
   .gallery-container h2 {
@@ -1400,13 +1400,13 @@ body.dark-mode .gallery-item:hover {
     font-size: 0.9rem;
   }
   .photo-grid {
-    grid-template-columns: 1fr; /* Single column on very small phones */
-    gap: 8px;
+    grid-template-columns: repeat(3, 1fr); /* Now 3 columns on very small phones */
+    gap: 5px; /* Even smaller gap for very tight fit */
   }
   .gallery-item img {
-    height: 200px; /* Adjusted height for small phones */
+    height: 100px; /* Adjusted height for 3 columns on small phones */
   }
   .overlay .caption {
-    font-size: 0.85rem;
+    font-size: 0.7rem; /* Adjusted font size for very small images */
   }
 }
