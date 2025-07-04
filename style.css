@@ -1122,7 +1122,7 @@ body.dark-mode .footer-bottom {
     flex-direction: column; /* Stack sections vertically */
     align-items: center; /* Center items when stacked */
     text-align: center; /* Center text within sections */
-    gap: 1rem; /* Reduced gap when stacked */
+    gap: 0.8rem; /* Reduced gap and consistent */
   }
 
   .footer-section, .footer-section.social-and-programmer {
@@ -1138,6 +1138,7 @@ body.dark-mode .footer-bottom {
   .footer-section ul li,
   .footer-section ul li a {
     font-size: 0.8rem; /* Smaller text on mobile */
+    text-align: center; /* Explicitly center text within list items and paragraphs */
   }
 
   .social-icons {
@@ -1146,7 +1147,7 @@ body.dark-mode .footer-bottom {
 
   /* Adjust programmer details section for mobile */
   .footer-section.programmer-details, .programmer-details {
-    text-align: center; /* Center text on mobile */
+    text-align: left; /* Center text on mobile */
   }
   .programmer-details .social-icons {
     justify-content: center; /* Center programmer social icons on mobile */
@@ -1157,6 +1158,9 @@ body.dark-mode .footer-bottom {
   .site-footer {
     padding: 1rem 0.8rem; /* Even smaller padding */
   }
+  .footer-content {
+    gap: 0.8rem; /* Consistent gap */
+  }
   .footer-section h3 {
     font-size: 1rem; /* Even smaller heading */
   }
@@ -1164,6 +1168,7 @@ body.dark-mode .footer-bottom {
   .footer-section ul li,
   .footer-section ul li a {
     font-size: 0.75rem; /* Even smaller text */
+    text-align: center; /* Explicitly center text within list items and paragraphs */
   }
   .social-icons a {
     font-size: 1.3rem; /* Even smaller icons */
@@ -1183,6 +1188,9 @@ body.dark-mode .footer-bottom {
     font-size: 0.7rem;
   }
 }
+
+
+
 
 
 body.dark-mode .footer-bottom {
