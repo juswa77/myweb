@@ -967,12 +967,12 @@ body.dark-mode .floating-nav-button:hover {
 
 
 
-/* --- Enhanced Footer Styles --- */
+/* Updated footer class to .site-footer */
 .site-footer {
   background-color: #c19a6b; /* Consistent with your current footer background */
   color: #fffaf0; /* Light text color */
-  padding: 2.5rem 2rem; /* More padding for a richer footer */
-  font-size: 0.95rem;
+  padding: 1.5rem 1.5rem; /* Reduced padding for a smaller footer */
+  font-size: 0.85rem; /* Smaller base font size */
   margin-top: auto; /* Pushes the footer to the bottom */
   box-shadow: 0 -4px 10px rgba(0,0,0,0.1); /* Subtle shadow at the top */
 }
@@ -988,28 +988,29 @@ body.dark-mode .site-footer {
   flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
   justify-content: space-around; /* Distribute space evenly */
   max-width: 1200px;
-  margin: 0 auto 1.5rem auto; /* Center content, add space at bottom */
-  gap: 2rem; /* Space between sections */
+  margin: 0 auto 1rem auto; /* Center content, reduced space at bottom */
+  gap: 1.5rem; /* Reduced space between sections */
 }
 
 .footer-section {
   flex: 1; /* Allow sections to grow */
-  min-width: 250px; /* Minimum width before wrapping */
-  padding: 1rem;
+  min-width: 220px; /* Reduced minimum width before wrapping */
+  padding: 0.8rem; /* Reduced padding */
   text-align: left;
 }
 
 .footer-section h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Smaller heading font size */
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem; /* Reduced margin */
   color: inherit; /* Inherit color for dark mode transition */
 }
 
 .footer-section p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
+  line-height: 1.5; /* Slightly tighter line height */
+  margin-bottom: 0.8rem; /* Reduced margin */
+  font-size: 0.85rem; /* Smaller paragraph font size */
 }
 
 .footer-section ul {
@@ -1019,13 +1020,14 @@ body.dark-mode .site-footer {
 }
 
 .footer-section ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* Reduced margin */
 }
 
 .footer-section ul li a {
   color: #fffaf0; /* Light link color */
   text-decoration: none;
   transition: color 0.3s ease;
+  font-size: 0.85rem; /* Smaller link font size */
 }
 
 body.dark-mode .footer-section ul li a {
@@ -1043,14 +1045,14 @@ body.dark-mode .footer-section ul li a:hover {
 
 .social-icons {
   display: flex;
-  gap: 1rem; /* Space between icons */
-  margin-top: 1rem;
+  gap: 0.8rem; /* Reduced space between icons */
+  margin-top: 0.8rem; /* Reduced margin */
   justify-content: flex-start; /* Align icons to the left */
 }
 
 .social-icons a {
   color: #fffaf0;
-  font-size: 1.8rem;
+  font-size: 1.5rem; /* Smaller icon size */
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
@@ -1067,14 +1069,121 @@ body.dark-mode .social-icons a:hover {
   color: #fff; /* White on hover in dark mode */
 }
 
+/* New wrapper for social and programmer details */
+.footer-section.social-and-programmer {
+  display: flex;
+  flex-direction: column; /* Stack social and programmer details */
+  gap: 1rem; /* Space between social and programmer blocks */
+  flex: 1;
+  min-width: 220px;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+.programmer-details {
+  margin-top: 0.5rem; /* Small space above programmer details if not part of main social section */
+}
+
+.programmer-details h3 {
+  font-size: 1.1rem; /* Slightly smaller heading for programmer details */
+  margin-bottom: 0.5rem;
+}
+
+.programmer-details p {
+  font-size: 0.8rem; /* Smaller text for programmer name */
+  margin-bottom: 0.5rem;
+}
+
+.programmer-details .social-icons {
+  gap: 0.6rem; /* Even smaller gap for programmer social icons */
+  font-size: 1.3rem; /* Smaller icons for programmer */
+}
+
+
 .footer-bottom {
   text-align: center;
-  padding-top: 1.5rem;
+  padding-top: 1rem; /* Reduced padding */
   border-top: 1px solid rgba(255, 255, 255, 0.2); /* Separator line */
-  margin-top: 1.5rem; /* Space above the separator */
-  font-size: 0.85rem;
+  margin-top: 1rem; /* Reduced space above the separator */
+  font-size: 0.75rem; /* Even smaller font for copyright */
   opacity: 0.8;
 }
+
+body.dark-mode .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 1.5rem 1rem; /* Adjust padding for mobile */
+  }
+  .footer-content {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center items when stacked */
+    text-align: center; /* Center text within sections */
+    gap: 1rem; /* Reduced gap when stacked */
+  }
+
+  .footer-section, .footer-section.social-and-programmer {
+    min-width: unset; /* Remove min-width when stacked */
+    width: 100%; /* Take full width */
+    padding: 0.8rem 0; /* Adjust padding */
+  }
+
+  .footer-section h3 {
+    font-size: 1.1rem; /* Smaller heading on mobile */
+  }
+  .footer-section p,
+  .footer-section ul li,
+  .footer-section ul li a {
+    font-size: 0.8rem; /* Smaller text on mobile */
+  }
+
+  .social-icons {
+    justify-content: center; /* Center social icons when stacked */
+  }
+
+  /* Adjust programmer details section for mobile */
+  .footer-section.programmer-details, .programmer-details {
+    text-align: center; /* Center text on mobile */
+  }
+  .programmer-details .social-icons {
+    justify-content: center; /* Center programmer social icons on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 1rem 0.8rem; /* Even smaller padding */
+  }
+  .footer-section h3 {
+    font-size: 1rem; /* Even smaller heading */
+  }
+  .footer-section p,
+  .footer-section ul li,
+  .footer-section ul li a {
+    font-size: 0.75rem; /* Even smaller text */
+  }
+  .social-icons a {
+    font-size: 1.3rem; /* Even smaller icons */
+  }
+  .programmer-details h3 {
+    font-size: 1rem;
+  }
+  .programmer-details p {
+    font-size: 0.75rem;
+  }
+  .programmer-details .social-icons {
+    font-size: 1.2rem;
+  }
+  .footer-bottom {
+    padding-top: 0.8rem;
+    margin-top: 0.8rem;
+    font-size: 0.7rem;
+  }
+}
+
 
 body.dark-mode .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
