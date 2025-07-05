@@ -207,3 +207,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+
+
+
+
+//Spotify player
+const spotifyToggle = document.getElementById('spotifyToggle');
+const floatingSpotifyPlayer = document.getElementById('floatingSpotifyPlayer');
+
+// Check saved visibility
+const savedSpotifyVisibility = localStorage.getItem('spotifyPlayerVisible');
+if (savedSpotifyVisibility === 'visible') {
+  floatingSpotifyPlayer.classList.remove('hidden-player');
+} else if (savedSpotifyVisibility === 'hidden' || savedSpotifyVisibility === null) {
+  floatingSpotifyPlayer.classList.add('hidden-player'); // default to hidden
+}
+
+
+spotifyToggle.addEventListener('click', () => {
+  floatingSpotifyPlayer.classList.toggle('hidden-player');
+
+  // Save visibility preference
+  const state = floatingSpotifyPlayer.classList.contains('hidden-player') ? 'hidden' : 'visible';
+  localStorage.setItem('spotifyPlayerVisible', state);
+});
