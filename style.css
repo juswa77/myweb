@@ -1415,7 +1415,6 @@ body.dark-mode .gallery-item:hover {
 
 
 
-/* Spotify toggle button */
 .spotify-toggle-button {
   position: fixed;
   bottom: 50px;
@@ -1438,8 +1437,8 @@ body.dark-mode .gallery-item:hover {
 
 .floating-spotify-container {
   position: fixed;
-  bottom: 90px;
-  right: 20px;
+  bottom: 110px;
+  right: 50px;
   width: 300px;
   background: #121212;
   border-radius: 16px;
@@ -1454,6 +1453,7 @@ body.dark-mode .gallery-item:hover {
   transform: translateY(20px);
   pointer-events: none;
 }
+
 
 
 @media (max-width: 480px) {
