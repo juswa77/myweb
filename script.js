@@ -238,3 +238,45 @@ spotifyToggle.addEventListener('click', () => {
   const state = floatingSpotifyPlayer.classList.contains('hidden-player') ? 'hidden' : 'visible';
   localStorage.setItem('spotifyPlayerVisible', state);
 });
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const content = document.getElementById("spa-content");
+
+  function loadPage(page) {
+    fetch(`pages/${page}.html`)
+      .then(res => res.text())
+      .then(html => {
+        content.innerHTML = html;
+        window.scrollTo(0, 0);
+      })
+      .catch(() => {
+        content.innerHTML = "<p>Oops! Page not found 😿</p>";
+      });
+  }
+
+  const initialPage = location.hash.replace("#", "") || "home";
+  loadPage(initialPage);
+
+  document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const page = button.dataset.page;
+      loadPage(page);
+      history.pushState(null, "", `#${page}`);
+    });
+  });
+
+  window.addEventListener('popstate', () => {
+    const page = location.hash.replace("#", "") || "home";
+    loadPage(page);
+  });
+});
