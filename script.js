@@ -43,7 +43,13 @@ function createBubble() {
     bubble.remove();
   }, 12000);
 }
-setInterval(createBubble, 105);
+
+
+// NEW:
+const isMobile = window.innerWidth <= 768;
+const bubbleInterval = isMobile ? 300 : 150;
+setInterval(createBubble, bubbleInterval);
+
 
 
 // Function to apply dark mode (declared globally for initial load check)
