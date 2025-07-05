@@ -1548,30 +1548,77 @@ body.dark-mode .gallery-item:hover {
   background-color: #8b5e3c;
 }
 
+
+
+
 /* --- UAE Featured Card --- */
 .uae-featured-card {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   background: linear-gradient(to right, #fff8f0, #f7e4cc);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(193, 154, 107, 0.3);
-  margin-bottom: 3rem;
+  margin: 3rem auto;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.uae-featured-card img {
-  width: 50%;
+/* Carousel Container */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 300px; /* 💡 Maintains consistent height */
+  overflow: hidden;
+  border-radius: 16px 0 0 16px;
+  flex-shrink: 0;
+}
+
+/* Carousel Slides Container */
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 300%; /* Adjust based on number of images */
+}
+
+/* Individual Slide */
+.carousel-images img {
+  width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* 💡 Auto-crops the image */
+  flex-shrink: 0;
+  display: block;
 }
 
+/* Navigation Buttons */
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 2rem;
+  padding: 0 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel .prev {
+  left: 10px;
+}
+
+.carousel .next {
+  right: 10px;
+}
+
+/* Text Side */
 .uae-featured-card .uae-text {
-  padding: 2rem;
   flex: 1;
+  padding: 2rem;
+  min-width: 300px;
 }
 
 .uae-featured-card h2 {
@@ -1586,15 +1633,16 @@ body.dark-mode .gallery-item:hover {
   line-height: 1.6;
 }
 
-/* Responsive */
+/* 🔁 Responsive Layout */
 @media (max-width: 768px) {
   .uae-featured-card {
     flex-direction: column;
   }
 
-  .uae-featured-card img {
-    width: 100%;
-    height: 200px;
+  .carousel {
+    height: 220px;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
   }
 
   .uae-featured-card .uae-text {
