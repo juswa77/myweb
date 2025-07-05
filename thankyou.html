@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You! 💌</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fffaf4;
+      color: #4b2e2e;
+    }
+
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    .thankyou-container {
+      max-width: 700px;
+      margin: 6rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    body.dark-mode .thankyou-container {
+      background: rgba(50, 50, 50, 0.25);
+    }
+
+    .thankyou-container h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .thankyou-container p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .thankyou-container img {
+      width: 180px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin-bottom: 1.5rem;
+    }
+
+    .back-button {
+      background-color: rgba(193, 154, 107, 0.8);
+      color: #fffaf0;
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .back-button:hover {
+      background-color: rgba(111, 78, 55, 0.9);
+      transform: translateY(-3px);
+    }
+
+    body.dark-mode .back-button {
+      background-color: rgba(60, 60, 60, 0.8);
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .back-button:hover {
+      background-color: rgba(80, 80, 80, 0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="thankyou-container">
+    <h1>Thank You! 💌</h1>
+    <p>Your message has been sent. I’ll get back to you as soon as I can!</p>
+    <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" alt="Happy Cat GIF">
+    <br><br>
+    <a href="index.html" class="back-button">Back to Home</a>
+  </div>
+
+  <script>
+    const savedMode = localStorage.getItem('mode');
+    if (savedMode === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+</body>
+</html>

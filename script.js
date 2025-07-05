@@ -245,3 +245,33 @@ spotifyToggle.addEventListener('click', () => {
 
 
 
+  const cat = document.getElementById("floatingCat");
+  const bubble = document.getElementById("catSpeechBubble");
+  const messages = [
+    "Don't be shy, I don't bite 🐾",
+    "Tell hooman what can be better 😺",
+    "You can stay anonymous, I won't tell 😼",
+    "Your feedback makes us purr~ 🐈",
+    "Meow if something feels off!",
+  ];
+
+  let index = 0;
+  let intervalId = null;
+
+  // Tap to toggle speech bubble
+  cat.addEventListener("click", () => {
+    bubble.classList.toggle("show");
+
+    // If showing, start rotating messages
+    if (bubble.classList.contains("show")) {
+      bubble.innerText = messages[index];
+      intervalId = setInterval(() => {
+        index = (index + 1) % messages.length;
+        bubble.innerText = messages[index];
+      }, 5000);
+    } else {
+      clearInterval(intervalId);
+    }
+  });
+
+
