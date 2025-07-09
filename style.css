@@ -1565,7 +1565,8 @@ body.dark-mode .gallery-item:hover {
   max-width: 1000px;
 }
 
-/* Carousel Container */
+
+
 .carousel {
   position: relative;
   width: 100%;
@@ -1573,25 +1574,20 @@ body.dark-mode .gallery-item:hover {
   overflow: hidden;
   border-radius: 16px 0 0 16px;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
 
 .carousel-images {
   display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 300%; /* 100% per image × 3 images */
+  transition: transform 0.8s ease-in-out;
+  width: 100%; /* Let JS handle movement */
 }
 
 .carousel-images img {
-  max-width: 100%;
-  height: auto;          /* ✅ Let image define height */
-  object-fit: contain;   /* ✅ No cropping */
-  flex-shrink: 0;
-  display: block;
+  width: 100%;
+  flex: 0 0 100%;
+  object-fit: cover;
 }
+
 
 
 @media (max-width: 768px) {

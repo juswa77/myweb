@@ -275,25 +275,21 @@ spotifyToggle.addEventListener('click', () => {
   });
 
 
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  let currentSlide = 0;
+document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".carousel-images img");
   const carouselImages = document.querySelector(".carousel-images");
-  const totalSlides = slides.length;
+  let currentSlide = 0;
 
-  document.querySelector(".next").addEventListener("click", () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  });
-
-  document.querySelector(".prev").addEventListener("click", () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  });
-
-  function updateCarousel() {
-    carouselImages.style.transform = `translateX(-${currentSlide * 100}%)`;
+  function updateSlideshow() {
+    const slideWidth = carouselImages.clientWidth;
+    carouselImages.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
   }
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlideshow();
+  }, 2000); // changes every 2 seconds
+
+  window.addEventListener("resize", updateSlideshow);
+  updateSlideshow();
 });
