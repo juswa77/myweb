@@ -293,3 +293,39 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", updateSlideshow);
   updateSlideshow();
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const travelHighlights = [
+    {
+      image: "images/pic2.jpg",
+      title: "Dubai, UAE",
+      caption: "Golden sands and sky-high dreams 🌆",
+      date: "July 2025"
+    },
+    {
+      image: "images/PIC3.png",
+      title: "Kyoto, Japan",
+      caption: "Zen gardens and bamboo trails 🍃",
+      date: "June 2025"
+    },
+    {
+      image: "images/BURJJ.png",
+      title: "Abu Dhabi, UAE",
+      caption: "A city of elegance and culture 🕌",
+      date: "May 2025"
+    },
+    
+  ];
+
+  const randomHighlight = travelHighlights[Math.floor(Math.random() * travelHighlights.length)];
+
+  const feedHTML = `
+    <img src="${randomHighlight.image}" alt="${randomHighlight.title}">
+    <h3>${randomHighlight.title}</h3>
+    <p>${randomHighlight.caption}</p>
+    <div class="feed-date">${randomHighlight.date}</div>
+  `;
+
+  document.getElementById("welcomeFeed").innerHTML = feedHTML;
+});

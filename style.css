@@ -1678,3 +1678,126 @@ body.dark-mode .gallery-item:hover {
     padding: 1.5rem;
   }
 }
+
+
+
+.home-feed {
+  margin: 4rem auto;
+  max-width: 1000px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.home-feed h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #4b2e2e;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feed-card {
+  display: flex;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  align-items: center;
+}
+
+.feed-card img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.feed-content {
+  text-align: left;
+}
+
+.feed-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  color: #8b5e3c;
+}
+
+.feed-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: #4b2e2e;
+}
+
+.feed-date {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feed-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .feed-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .feed-content {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.random-welcome-feed {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  animation: floatAnimation 3s ease-in-out infinite;
+}
+
+.random-welcome-feed img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.random-welcome-feed h3 {
+  font-family: 'Playfair Display', serif;
+  color: #8b5e3c;
+  margin: 0.5rem 0;
+}
+
+.random-welcome-feed p {
+  color: #4b2e2e;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.random-welcome-feed .feed-date {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
