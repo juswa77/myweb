@@ -305,13 +305,13 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       image: "images/PIC3.png",
-      title: "Kyoto, Japan",
+      title: "Dubai, UAE",
       caption: "Zen gardens and bamboo trails 🍃",
       date: "June 2025"
     },
     {
       image: "images/BURJJ.png",
-      title: "Abu Dhabi, UAE",
+      title: "Dubai, UAE",
       caption: "A city of elegance and culture 🕌",
       date: "May 2025"
     },
