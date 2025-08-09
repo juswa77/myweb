@@ -1,40 +1,3 @@
-/* ==========================================================================
-   VARIABLES
-   ========================================================================== */
-:root {
-  /* Colors */
-  --coffee-light: #c19a6b;
-  --coffee-dark: #6f4e37;
-  --cream: #fffaf0;
-  --text-dark: #4b2e2e;
-  --text-light: #f0f0f0;
-  --bg-dark: #2c2c2c;
-
-  /* Shadows */
-  --shadow-light: 0 4px 8px rgba(0,0,0,0.1);
-  --shadow-medium: 0 8px 20px rgba(0,0,0,0.15);
-  --shadow-dark: 0 8px 30px rgba(0,0,0,0.5);
-
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
-}
-
-/* Dark mode overrides */
-body.dark-mode {
-  --coffee-light: rgba(60, 60, 60, 0.8);
-  --coffee-dark: #4a4a4a;
-  --cream: #e0e0e0;
-  --text-dark: #f0f0f0;
-  --bg-dark: #2c2c2c;
-  --shadow-light: 0 2px 5px rgba(0,0,0,0.2);
-  --shadow-dark: 0 8px 30px rgba(0,0,0,0.5);
-}
-
-/* ==========================================================================
-   GLOBAL STYLES
-   ========================================================================== */
 html, body {
   height: 100%;
   margin: 0;
@@ -46,89 +9,1795 @@ body {
   font-family: 'Quicksand', sans-serif;
   background: url('images/background.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: var(--text-dark);
-  transition: background-color var(--transition-slow), color var(--transition-slow), background-image var(--transition-slow);
+  color: #4b2e2e;
+  position: relative;
+  transition: background-color 0.5s ease, color 0.5s ease, background-image 0.5s ease; /* Smooth transition for dark mode, including background-image */
 }
 
+/* Dark Mode Styles */
 body.dark-mode {
-  background: url('images/bgD.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background: url('images/bgD.jpg') no-repeat center center fixed; /* Assuming you have a dark mode specific image */
+  background-size: cover; /* Ensure it covers the screen in dark mode too */
+  background-color: #2c2c2c; /* Fallback color */
+  color: #f0f0f0; /* Light text */
+  backdrop-filter: none; /* Ensure no blur on the body background in dark mode */
 }
 
-/* Utility classes */
-.glass-container {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  box-shadow: var(--shadow-light);
-}
-body.dark-mode .glass-container {
-  background: rgba(50, 50, 50, 0.4);
-  box-shadow: var(--shadow-dark);
+body.dark-mode .bubbles-container .bubble {
+  background-color: rgba(255, 255, 255, 0.2); /* Lighter bubbles in dark mode */
 }
 
-.hover-lift {
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-}
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-medium);
+body.dark-mode header {
+  background: rgba(30, 30, 30, 0.8); /* Darker, slightly transparent header */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
-.button-style {
-  background-color: var(--coffee-light);
-  color: var(--cream);
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
+body.dark-mode .hero-overlay {
+  background: rgba(50, 50, 50, 0.4); /* Darker frosted glass */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+body.dark-mode header h1,
+body.dark-mode header p {
+  color: #f0f0f0; /* Ensure header text is light */
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+
+body.dark-mode .tab-button {
+  background-color: rgba(60, 60, 60, 0.8);
+  color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .tab-button:hover {
+  background-color: rgba(80, 80, 80, 0.9);
+}
+
+body.dark-mode .tab-button.active {
+  background-color: #4a4a4a; /* Active tab in dark mode */
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .card {
+  background: rgba(50, 50, 50, 0.4); /* Darker card background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .card:hover {
+  background-color: rgba(70, 70, 70, 0.9); /* Darker hover effect */
+  /* Even more intense White glow shadow on hover in dark mode */
+  box-shadow: 0 0 60px 20px rgba(255, 255, 255, 1); /* Significantly increased intensity, blur, and spread */
+}
+
+body.dark-mode .card h2,
+body.dark-mode .card p {
+  color: #f0f0f0; /* Ensure card text is light */
+}
+
+body.dark-mode footer {
+  background-color: #333; /* Darker footer */
+  color: #e0e0e0;
+}
+
+/* Dark Mode Toggle Button Styles */
+.dark-mode-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fffaf0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
   cursor: pointer;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1rem;
-  box-shadow: var(--shadow-light);
-  transition: background-color var(--transition-normal), transform var(--transition-fast);
-}
-.button-style:hover {
-  background-color: var(--coffee-dark);
-  transform: translateY(-5px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  z-index: 20; /* Ensure it's above other header elements */
 }
 
-/* ==========================================================================
-   HEADER
-   ========================================================================== */
+.dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+body.dark-mode .dark-mode-toggle {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #f0f0f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.bubbles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -200px;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(111, 78, 55, 0.4); /* coffee brown */
+  border-radius: 50%;
+  animation: rise 10s infinite ease-in;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120vh) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+/* Redesigned Header Styles */
 header {
   padding: 3rem 2rem;
-  background: rgba(193, 154, 107, 0.6);
-  backdrop-filter: blur(5px);
+  background: rgba(193, 154, 107, 0.6); /* Lighter coffee color with transparency */
+  backdrop-filter: blur(5px); /* Added blur to the header itself */
+  -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
   text-align: center;
-  color: var(--cream);
+  color: #fffaf0;
   font-family: 'Playfair Display', serif;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 10;
 }
 
 header h1 {
   font-size: 3.5rem;
   margin-bottom: 0.7rem;
+  letter-spacing: 1.5px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  line-height: 1.2;
 }
 
 header p {
   font-size: 1.3rem;
   font-style: italic;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  opacity: 0.9;
 }
 
-/* ==========================================================================
-   MEDIA QUERIES
-   ========================================================================== */
+/* Responsive adjustments for the header */
 @media (max-width: 768px) {
   header {
     padding: 3rem 1rem;
   }
-  header h1 { font-size: 2.5rem; }
-  header p { font-size: 1.05rem; }
+  header h1 {
+    font-size: 2.5rem;
+  }
+  header p {
+    font-size: 1.05rem;
+  }
+  .hero-overlay {
+    padding: 2rem 1rem;
+    border-radius: 15px;
+  }
 }
 
 @media (max-width: 480px) {
-  header h1 { font-size: 1.8rem; }
-  header p { font-size: 0.9rem; }
+  header h1 {
+    font-size: 1.8rem;
+  }
+  header p {
+    font-size: 0.9rem;
+  }
+  .hero-overlay {
+    padding: 1.5rem 0.8rem;
+    border-radius: 10px;
+  }
+}
+
+/* Tab Navigation Styles */
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tab-button {
+  background-color: rgba(193, 154, 107, 0.8);
+  color: #fffaf0;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  background-color: rgba(111, 78, 55, 0.9);
+  transform: translateY(-15px);
+}
+
+.tab-button.active {
+  background-color: #6f4e37;
+  color: #fffaf0;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card-wrapper {
+  perspective: 1000px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px); /* Consistent blur value */
+  -webkit-backdrop-filter: blur(10px); /* Consistent blur value for WebKit */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Adjusted transition speeds */
+  will-change: transform, box-shadow, background-color;
+  cursor: pointer;
+  position: relative;
+}
+
+.card:hover {
+  background-color: rgba(111, 78, 55, 0.8);
+}
+
+.card h2 {
+  font-family: 'Playfair Display', serif;
+  color: #000000;
+  margin-top: 0;
+  transition: color 0.5s ease;
+}
+
+.card p {
+  color: #000000;
+  line-height: 1.6;
+  transition: color 0.5s ease;
+}
+
+.card:hover h2,
+.card:hover p {
+  color: #fffaf0;
+}
+
+
+footer {
+  background-color: #c19a6b;
+  text-align: center;
+  padding: 1rem;
+  color: #fffaf0;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.card-section.hidden {
+  display: none;
+}
+
+.card-group {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+
+
+
+
+
+/* Floating Cat Feature Styles */
+.floating-cat-container {
+  position: fixed;
+  bottom: 50px; /* Adjust as needed */
+  left: 50px; /* Changed from right to left */
+  z-index: 100; /* Ensure it's above other content */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Changed to align to the start (left) */
+}
+
+.floating-cat {
+  width: 150; /* Adjust size as needed */
+  height: auto;
+  cursor: pointer;
+  animation: floatAnimation 3s ease-in-out infinite; /* Gentle floating animation */
+  /* REMOVED: border-radius: 50%; */
+  /* REMOVED: box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
+}
+
+.speech-bubble {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #4b2e2e;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 200px;
+  text-align: center;
+  font-size: 0.9rem;
+  position: relative;
+  opacity: 0; /* Hidden by default */
+  visibility: hidden; /* Hidden by default */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 20px; /* Changed from right to left */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Dark mode adjustments for speech bubble */
+body.dark-mode .speech-bubble {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: #f0f0f0;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .speech-bubble::after {
+  border-top: 10px solid rgba(30, 30, 30, 0.9);
+}
+
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsive adjustments for floating cat */
+@media (max-width: 768px) {
+  .floating-cat-container {
+    bottom: 15px;
+    left: 15px; /* Changed from right to left */
+  }
+  .floating-cat {
+    width: 80px;
+  }
+  .speech-bubble {
+    max-width: 180px;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-cat-container {
+    bottom: 20px;
+    left: 10px; /* Changed from right to left */
+  }
+  .floating-cat {
+    width: 80;
+  }
+  .speech-bubble {
+    max-width: 150px;
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}
+
+
+
+
+
+
+    /* --- Styles for me.html content --- */
+.about-me-container {
+  max-width: 800px;
+  margin: 4rem auto 2rem auto; /* Adjusted top margin */
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Reverted to a standard shadow */
+  text-align: center;
+  color: #4b2e2e; /* Default light mode text color */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Simplified transition */
+  animation: floatAnimation 3s ease-in-out infinite; /* Added gentle floating animation */
+}
+
+body.dark-mode .about-me-container {
+  background: rgba(50, 50, 50, 0.4);
+  color: #f0f0f0; /* Dark mode text color */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.about-me-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: inherit; /* Inherit color from parent for dark mode transition */
+}
+
+.about-me-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(193, 154, 107, 0.8);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .about-me-container img {
+  border-color: rgba(60, 60, 60, 0.8);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.about-me-container p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: inherit; /* Inherit color from parent for dark mode transition */
+}
+
+.back-button {
+  background-color: rgba(193, 154, 107, 0.8);
+  color: #fffaf0;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-decoration: none; /* Remove underline from anchor tag */
+  display: inline-block; /* Allow padding and margin */
+  margin-top: 1rem;
+}
+
+.back-button:hover {
+  background-color: rgba(111, 78, 55, 0.9);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .back-button {
+  background-color: rgba(60, 60, 60, 0.8);
+  color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .back-button:hover {
+  background-color: rgba(80, 80, 80, 0.9);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Responsive adjustments for me.html */
+@media (max-width: 768px) {
+  .about-me-container {
+    margin: 2rem auto;
+    padding: 1.5rem;
+  }
+  .about-me-container h1 {
+    font-size: 2rem;
+  }
+  .about-me-container img {
+    width: 150px;
+    height: 150px;
+  }
+  .about-me-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-me-container {
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 15px;
+  }
+  .about-me-container h1 {
+    font-size: 1.8rem;
+  }
+  .about-me-container img {
+    width: 120px;
+    height: 120px;
+  }
+  .about-me-container p {
+    font-size: 0.9rem;
+  }
+  .back-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+
+
+/* --- Styles for skincare.html content --- */
+.skincare-container {
+  max-width: 900px;
+  margin: 4rem auto 2rem auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #4b2e2e;
+  animation: floatAnimation 3s ease-in-out infinite; /* Gentle floating animation */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+body.dark-mode .skincare-container {
+  background: rgba(50, 50, 50, 0.4);
+  color: #f0f0f0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.skincare-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.skincare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.skincare-card {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .skincare-card {
+  background: rgba(70, 70, 70, 0.5);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+}
+
+.skincare-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .skincare-card:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.skincare-card h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.4rem;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  color: inherit;
+}
+
+.skincare-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: inherit;
+}
+
+.skincare-card .icon {
+  font-size: 1.8rem;
+  margin-right: 10px;
+  color: #c19a6b; /* Coffee color for icons */
+}
+
+body.dark-mode .skincare-card .icon {
+  color: #f0f0f0; /* Light color for icons in dark mode */
+}
+
+/* Responsive adjustments for skincare.html */
+@media (max-width: 768px) {
+  .skincare-container {
+     margin: 0.5rem 1.5rem 0.5rem;
+    padding: 1.5rem;
+  }
+  .skincare-container h1 {
+    font-size: 2.2rem;
+  }
+  .skincare-grid {
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+  }
+  .skincare-card {
+    padding: 1.2rem;
+  }
+  .skincare-card h3 {
+    font-size: 1.2rem;
+  }
+  .skincare-card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skincare-container {
+    margin: 0.5rem -3rem 0.5rem;
+    padding: 0.8rem;
+    border-radius: 15px;
+  }
+  .skincare-container h1 {
+    font-size: 1.8rem;
+  }
+  .skincare-card {
+    padding: 1rem;
+  }
+  .skincare-card h3 {
+    font-size: 1.1rem;
+  }
+  .skincare-card p {
+    font-size: 0.85rem;
+  }
+}
+
+
+
+
+
+/* --- New Sections on skincare.html --- */
+.skincare-section {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #4b2e2e;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .skincare-section {
+  background: rgba(50, 50, 50, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #f0f0f0;
+}
+
+.skincare-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.skincare-section p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: inherit;
+}
+
+/* Ingredient Grid */
+.ingredient-grid, .tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.ingredient-card, .tool-card {
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+body.dark-mode .ingredient-card, body.dark-mode .tool-card {
+  background: rgba(80, 80, 80, 0.6);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.02);
+}
+
+.ingredient-card:hover, .tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .ingredient-card:hover, body.dark-mode .tool-card:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.ingredient-card h3, .tool-card h3 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.ingredient-card .icon, .tool-card .icon {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  color: #c19a6b;
+}
+
+body.dark-mode .ingredient-card .icon, body.dark-mode .tool-card .icon {
+  color: #f0f0f0;
+}
+
+.tool-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .tool-image {
+  box-shadow: 0 2px 8px rgba(255,255,255,0.05);
+}
+
+/* Routine Steps */
+.routine-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.routine-column {
+  flex: 1;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+body.dark-mode .routine-column {
+  background: rgba(80, 80, 80, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.routine-column h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: inherit;
+}
+
+.routine-column ol {
+  list-style: none; /* Remove default numbering */
+  padding: 0;
+  margin: 0;
+}
+
+.routine-column li {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  color: inherit;
+}
+
+.routine-column li:last-child {
+  margin-bottom: 0;
+}
+
+.step-icon {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-right: 10px;
+  color: #6f4e37; /* Coffee brown for step numbers */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+body.dark-mode .step-icon {
+  color: #f0f0f0;
+}
+
+
+/* --- Floating Navigation Buttons --- */
+.floating-nav-container {
+  position: fixed;
+  right: 20px; /* Position on the right side */
+  bottom: 50%; /* Center vertically */
+  transform: translateY(50%); /* Adjust for perfect vertical centering */
+  z-index: 90; /* Below floating cat, above main content */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between buttons */
+}
+
+.floating-nav-button {
+  background-color: rgba(193, 154, 107, 0.8);
+  color: #fffaf0;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  text-decoration: none; /* Remove underline for links */
+}
+
+.floating-nav-button:hover {
+  background-color: rgba(111, 78, 55, 0.9);
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .floating-nav-button {
+  background-color: rgba(60, 60, 60, 0.8);
+  color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .floating-nav-button:hover {
+  background-color: rgba(80, 80, 80, 0.9);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Responsive adjustments for floating navigation */
+@media (max-width: 768px) {
+  .floating-nav-container {
+    right: 10px; /* Position on the right side */
+    bottom: 20px; /* Keep at the bottom */
+    left: auto; /* Remove left positioning */
+    transform: none; /* Remove horizontal centering transform */
+    flex-direction: row; /* Arrange buttons horizontally */
+    width: auto; /* Allow content to dictate width */
+    gap: 8px; /* Smaller gap */
+    padding: 5px; /* Add some padding */
+    background: rgba(255, 255, 255, 0.1); /* Slight background for visibility */
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  body.dark-mode .floating-nav-container {
+    background: rgba(30, 30, 30, 0.2);
+  }
+
+  .floating-nav-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-nav-container {
+    bottom: 10px; /* Even closer to the bottom */
+    gap: 5px; /* Smaller gap */
+    padding: 3px;
+    right: 10px; /* Ensure it stays on the right */
+    left: auto; /* Ensure no left positioning */
+  }
+  .floating-nav-button {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+/* Updated footer class to .site-footer */
+.site-footer {
+  background-color: #c19a6b; /* Consistent with your current footer background */
+  color: #fffaf0; /* Light text color */
+  padding: 1.5rem 1.5rem; /* Reduced padding for a smaller footer */
+  font-size: 0.85rem; /* Smaller base font size */
+  margin-top: auto; /* Pushes the footer to the bottom */
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1); /* Subtle shadow at the top */
+}
+
+body.dark-mode .site-footer {
+  background-color: #333; /* Darker footer in dark mode */
+  color: #e0e0e0;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+  justify-content: space-around; /* Distribute space evenly */
+  max-width: 1200px;
+  margin: 0 auto 1rem auto; /* Center content, reduced space at bottom */
+  gap: 1.5rem; /* Reduced space between sections */
+}
+
+.footer-section {
+  flex: 1; /* Allow sections to grow */
+  min-width: 220px; /* Reduced minimum width before wrapping */
+  padding: 0.8rem; /* Reduced padding */
+  text-align: left;
+}
+
+.footer-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; /* Smaller heading font size */
+  margin-top: 0;
+  margin-bottom: 0.8rem; /* Reduced margin */
+  color: inherit; /* Inherit color for dark mode transition */
+}
+
+.footer-section p {
+  line-height: 1.5; /* Slightly tighter line height */
+  margin-bottom: 0.8rem; /* Reduced margin */
+  font-size: 0.85rem; /* Smaller paragraph font size */
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.4rem; /* Reduced margin */
+}
+
+.footer-section ul li a {
+  color: #fffaf0; /* Light link color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.85rem; /* Smaller link font size */
+}
+
+body.dark-mode .footer-section ul li a {
+  color: #b0b0b0; /* Lighter links in dark mode */
+}
+
+.footer-section ul li a:hover {
+  color: #6f4e37; /* Coffee brown on hover */
+  text-decoration: underline;
+}
+
+body.dark-mode .footer-section ul li a:hover {
+  color: #fff; /* White on hover in dark mode */
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.8rem; /* Reduced space between icons */
+  margin-top: 0.8rem; /* Reduced margin */
+  justify-content: flex-start; /* Align icons to the left */
+}
+
+.social-icons a {
+  color: #fffaf0;
+  font-size: 1.5rem; /* Smaller icon size */
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+body.dark-mode .social-icons a {
+  color: #e0e0e0;
+}
+
+.social-icons a:hover {
+  color: #6f4e37; /* Coffee brown on hover */
+  transform: scale(1.1);
+}
+
+body.dark-mode .social-icons a:hover {
+  color: #fff; /* White on hover in dark mode */
+}
+
+/* New wrapper for social and programmer details */
+.footer-section.social-and-programmer {
+  display: flex;
+  flex-direction: column; /* Stack social and programmer details */
+  gap: 1rem; /* Space between social and programmer blocks */
+  flex: 1;
+  min-width: 220px;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+.programmer-details {
+  margin-top: 0.5rem; /* Small space above programmer details if not part of main social section */
+}
+
+.programmer-details h3 {
+  font-size: 1.1rem; /* Slightly smaller heading for programmer details */
+  margin-bottom: 0.5rem;
+}
+
+.programmer-details p {
+  font-size: 0.8rem; /* Smaller text for programmer name */
+  margin-bottom: 0.5rem;
+}
+
+.programmer-details .social-icons {
+  gap: 0.6rem; /* Even smaller gap for programmer social icons */
+  font-size: 1.3rem; /* Smaller icons for programmer */
+}
+
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1rem; /* Reduced padding */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Separator line */
+  margin-top: 1rem; /* Reduced space above the separator */
+  font-size: 0.75rem; /* Even smaller font for copyright */
+  opacity: 0.8;
+}
+
+body.dark-mode .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 1.5rem 1rem; /* Adjust padding for mobile */
+  }
+  .footer-content {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center items when stacked */
+    text-align: center; /* Center text within sections */
+    gap: 0.8rem; /* Reduced gap and consistent */
+  }
+
+  .footer-section, .footer-section.social-and-programmer {
+    min-width: unset; /* Remove min-width when stacked */
+    width: 100%; /* Take full width */
+    padding: 0.8rem 0; /* Adjust padding */
+  }
+
+  .footer-section h3 {
+    font-size: 1.1rem; /* Smaller heading on mobile */
+  }
+  .footer-section p,
+  .footer-section ul li,
+  .footer-section ul li a {
+    font-size: 0.8rem; /* Smaller text on mobile */
+    text-align: center; /* Explicitly center text within list items and paragraphs */
+  }
+
+  .social-icons {
+    justify-content: center; /* Center social icons when stacked */
+  }
+
+  /* Adjust programmer details section for mobile */
+  .footer-section.programmer-details, .programmer-details {
+    text-align: left; /* Center text on mobile */
+  }
+  .programmer-details .social-icons {
+    justify-content: center; /* Center programmer social icons on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 1rem 0.8rem; /* Even smaller padding */
+  }
+  .footer-content {
+    gap: 0.8rem; /* Consistent gap */
+  }
+  .footer-section h3 {
+    font-size: 1rem; /* Even smaller heading */
+  }
+  .footer-section p,
+  .footer-section ul li,
+  .footer-section ul li a {
+    font-size: 0.75rem; /* Even smaller text */
+    text-align: center; /* Explicitly center text within list items and paragraphs */
+  }
+  .social-icons a {
+    font-size: 1.3rem; /* Even smaller icons */
+  }
+  .programmer-details h3 {
+    font-size: 1rem;
+  }
+  .programmer-details p {
+    font-size: 0.75rem;
+  }
+  .programmer-details .social-icons {
+    font-size: 1.2rem;
+  }
+  .footer-bottom {
+    padding-top: 0.8rem;
+    margin-top: 0.8rem;
+    font-size: 0.7rem;
+  }
+}
+
+
+
+
+
+body.dark-mode .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center items when stacked */
+    text-align: center; /* Center text within sections */
+  }
+
+  .footer-section {
+    min-width: unset; /* Remove min-width when stacked */
+    width: 100%; /* Take full width */
+    padding: 1rem 0; /* Adjust padding */
+  }
+
+  .footer-section h3 {
+    font-size: 1.3rem;
+  }
+
+  .social-icons {
+    justify-content: center; /* Center social icons when stacked */
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 1.5rem 1rem;
+  }
+  .footer-section h3 {
+    font-size: 1.2rem;
+  }
+  .footer-section p,
+  .footer-section ul li,
+  .footer-bottom p {
+    font-size: 0.85rem;
+  }
+  .social-icons a {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+
+/* --- Styles for Gallery Page (gallery.html) --- */
+.gallery-container {
+  max-width: 1200px;
+  margin: 4rem auto 2rem auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #4b2e2e;
+  animation: floatAnimation 3s ease-in-out infinite; /* Gentle floating animation */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+body.dark-mode .gallery-container {
+  background: rgba(50, 50, 50, 0.4);
+  color: #f0f0f0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.gallery-intro {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Instagram-style Photo Grid */
+.photo-grid {
+  display: grid;
+  /* Explicitly define 3 columns with equal width for larger screens */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px; /* Space between images */
+  margin-top: 2rem;
+  width: 100%; /* Ensure it takes full available width */
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  /* Enhanced shadow for a more defined look */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+}
+
+body.dark-mode .gallery-item {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Darker shadow in dark mode */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-item:hover {
+  transform: scale(1.03); /* Slight zoom on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
+
+body.dark-mode .gallery-item:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 300px; /* Fixed height for grid consistency */
+  object-fit: cover; /* Ensures images cover the area without distortion */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05); /* Further zoom on image within item */
+}
+
+.gallery-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Slightly less opaque overlay */
+  color: #fff;
+  display: flex;
+  flex-direction: column; /* Stack caption and potential icons */
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+  padding: 1.5rem; /* Increased padding */
+  text-align: center;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1; /* Show overlay on hover */
+}
+
+.overlay .caption {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+  margin-bottom: 0.5rem; /* Space below caption if icons are added */
+}
+
+/* Responsive adjustments for Gallery */
+@media (max-width: 992px) { /* Adjust breakpoint for 2 columns */
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens (laptops/larger tablets) */
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) { /* Tablets and smaller */
+  .gallery-container {
+    margin: 2rem auto;
+    padding: 1.2rem; /* Slightly reduced padding */
+  }
+  .gallery-container h2 {
+    font-size: 2.2rem;
+  }
+  .gallery-intro {
+    font-size: 1rem;
+  }
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr); /* Now 3 columns on tablets and smaller */
+    gap: 8px; /* Reduced gap for tighter fit */
+  }
+  .gallery-item img {
+    height: 150px; /* Adjusted height for 3 columns on tablets */
+  }
+  .overlay .caption {
+    font-size: 0.8rem; /* Adjusted font size for smaller images */
+  }
+}
+
+@media (max-width: 480px) { /* Smaller phones */
+  .gallery-container {
+    margin: 1rem auto;
+    padding: 0.8rem; /* Further reduced padding for very small screens */
+    border-radius: 15px;
+  }
+  .gallery-container h2 {
+    font-size: 1.8rem;
+  }
+  .gallery-intro {
+    font-size: 0.9rem;
+  }
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr); /* Now 3 columns on very small phones */
+    gap: 5px; /* Even smaller gap for very tight fit */
+  }
+  .gallery-item img {
+    height: 100px; /* Adjusted height for 3 columns on small phones */
+  }
+  .overlay .caption {
+    font-size: 0.7rem; /* Adjusted font size for very small images */
+  }
+}
+
+
+
+
+
+.spotify-toggle-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 1001;
+  background-color: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.spotify-toggle-button:hover {
+  transform: scale(1.1);
+}
+
+.floating-spotify-container {
+  position: fixed;
+  bottom: 110px;
+  right: 50px;
+  width: 300px;
+  background: #121212;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hidden-player {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+
+
+@media (max-width: 480px) {
+  .floating-spotify-container {
+    width: 90vw;           /* fills 90% of the screen width */
+    right: 5vw;            /* centers with left/right spacing */
+    bottom: 100px;         /* pushes higher for more room */
+  }
+
+  .spotify-toggle-button {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+  }
+}
+
+
+
+
+
+
+/* --- Travel Places Styles --- */
+.travel-container {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.travel-container h1 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.travel-container p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #4b2e2e;
+}
+
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.travel-card {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.travel-card:hover {
+  transform: translateY(-6px);
+}
+
+.travel-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.travel-card h3 {
+  margin: 0.8rem;
+  font-size: 1.3rem;
+  color: #4b2e2e;
+}
+
+.travel-card p {
+  padding: 0 1rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* Back button */
+.back-button {
+  margin-top: 2rem;
+  display: inline-block;
+  background-color: #c19a6b;
+  color: #fffaf0;
+  padding: 0.8rem 1.6rem;
+  border-radius: 24px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #8b5e3c;
+}
+
+
+
+
+/* --- UAE Featured Card --- */
+.uae-featured-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background: linear-gradient(to right, #fff8f0, #f7e4cc);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(193, 154, 107, 0.3);
+  margin: 3rem auto;
+  max-width: 1000px;
+}
+
+
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  border-radius: 16px 0 0 16px;
+  flex-shrink: 0;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+  width: 100%; /* Let JS handle movement */
+}
+
+.carousel-images img {
+  width: 100%;
+  flex: 0 0 100%;
+  object-fit: cover;
+}
+
+
+
+@media (max-width: 768px) {
+  .uae-featured-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel {
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .uae-text {
+    padding: 1.5rem;
+    text-align: center;
+  }
+}
+
+
+
+/* Navigation Buttons */
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(193, 154, 107, 0.85); /* Soft brown */
+  color: #fffaf0;
+  border: none;
+  font-size: 1.8rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.carousel button:hover {
+  background-color: rgba(139, 94, 60, 0.95); /* Darker on hover */
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel .prev {
+  left: 10px;
+}
+
+.carousel .next {
+  right: 10px;
+}
+
+/* Text Side */
+.uae-featured-card .uae-text {
+  flex: 1;
+  padding: 2rem;
+  min-width: 300px;
+}
+
+.uae-featured-card h2 {
+  font-family: 'Playfair Display', serif;
+  color: #8b5e3c;
+  margin-bottom: 1rem;
+}
+
+.uae-featured-card p {
+  font-size: 1.05rem;
+  color: #4b2e2e;
+  line-height: 1.6;
+}
+
+/* 🔁 Responsive Layout */
+@media (max-width: 768px) {
+  .uae-featured-card {
+    flex-direction: column;
+  }
+
+  .carousel {
+    height: 220px;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .uae-featured-card .uae-text {
+    padding: 1.5rem;
+  }
+}
+
+
+
+.home-feed {
+  margin: 4rem auto;
+  max-width: 1000px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.home-feed h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #4b2e2e;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feed-card {
+  display: flex;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  align-items: center;
+}
+
+.feed-card img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.feed-content {
+  text-align: left;
+}
+
+.feed-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  color: #8b5e3c;
+}
+
+.feed-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: #4b2e2e;
+}
+
+.feed-date {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feed-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .feed-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .feed-content {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.random-welcome-feed {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  animation: floatAnimation 3s ease-in-out infinite;
+}
+
+.random-welcome-feed img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.random-welcome-feed h3 {
+  font-family: 'Playfair Display', serif;
+  color: #8b5e3c;
+  margin: 0.5rem 0;
+}
+
+.random-welcome-feed p {
+  color: #4b2e2e;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.random-welcome-feed .feed-date {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
