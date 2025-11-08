@@ -799,17 +799,16 @@ body.dark-mode .ingredient-card .icon, body.dark-mode .tool-card .icon {
   color: #f0f0f0;
 }
 
-.tool-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  object-fit: cover;
+.tool-icon {
+  font-size: 4rem;
+  color: #c19a6b;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: block;
+  text-align: center;
 }
 
-body.dark-mode .tool-image {
-  box-shadow: 0 2px 8px rgba(255,255,255,0.05);
+body.dark-mode .tool-icon {
+  color: #f0f0f0;
 }
 
 /* Routine Steps */
@@ -1240,177 +1239,118 @@ body.dark-mode .footer-bottom {
 
 
 
-
-/* --- Styles for Gallery Page (gallery.html) --- */
+/* Gallery Container */
 .gallery-container {
   max-width: 1200px;
-  margin: 4rem auto 2rem auto;
-  padding: 2.5rem;
+  margin: 4rem auto;
+  padding: 2rem;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
-  color: #4b2e2e;
-  animation: floatAnimation 3s ease-in-out infinite; /* Gentle floating animation */
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-body.dark-mode .gallery-container {
-  background: rgba(50, 50, 50, 0.4);
-  color: #f0f0f0;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 }
 
 .gallery-container h2 {
   font-family: 'Playfair Display', serif;
   font-size: 2.8rem;
   margin-bottom: 1rem;
-  color: inherit;
 }
 
 .gallery-intro {
   font-size: 1.1rem;
   margin-bottom: 2rem;
-  line-height: 1.6;
   opacity: 0.9;
 }
 
 /* Instagram-style Photo Grid */
 .photo-grid {
   display: grid;
-  /* Explicitly define 3 columns with equal width for larger screens */
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px; /* Space between images */
-  margin-top: 2rem;
-  width: 100%; /* Ensure it takes full available width */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
 }
 
+/* Gallery Item */
 .gallery-item {
   position: relative;
+  border-radius: 0x;
   overflow: hidden;
-  border-radius: 10px;
-  /* Enhanced shadow for a more defined look */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-}
-
-body.dark-mode .gallery-item {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Darker shadow in dark mode */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .gallery-item:hover {
-  transform: scale(1.03); /* Slight zoom on hover */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
 }
 
-body.dark-mode .gallery-item:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
+/* Images */
 .gallery-item img {
   width: 100%;
-  height: 300px; /* Fixed height for grid consistency */
-  object-fit: cover; /* Ensures images cover the area without distortion */
+  height: 100%;
+  object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
 }
 
-.gallery-item:hover img {
-  transform: scale(1.05); /* Further zoom on image within item */
-}
-
+/* Overlay & Caption */
 .gallery-item .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Slightly less opaque overlay */
+  background: rgba(0,0,0,0.5);
   color: #fff;
   display: flex;
-  flex-direction: column; /* Stack caption and potential icons */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: 0; /* Hidden by default */
+  opacity: 0;
   transition: opacity 0.3s ease;
-  padding: 1.5rem; /* Increased padding */
   text-align: center;
+  padding: 1rem;
 }
 
 .gallery-item:hover .overlay {
-  opacity: 1; /* Show overlay on hover */
+  opacity: 1;
 }
 
 .overlay .caption {
+  font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 500;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
-  margin-bottom: 0.5rem; /* Space below caption if icons are added */
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
-/* Responsive adjustments for Gallery */
-@media (max-width: 992px) { /* Adjust breakpoint for 2 columns */
+/* Heart icon */
+.like-icon {
+  font-size: 1.5rem;
+  color: #ff4757;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gallery-item:hover .like-icon {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
   .photo-grid {
-    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens (laptops/larger tablets) */
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) { /* Tablets and smaller */
-  .gallery-container {
-    margin: 2rem auto;
-    padding: 1.2rem; /* Slightly reduced padding */
-  }
-  .gallery-container h2 {
-    font-size: 2.2rem;
-  }
-  .gallery-intro {
-    font-size: 1rem;
-  }
+@media (max-width: 480px) {
   .photo-grid {
-    grid-template-columns: repeat(3, 1fr); /* Now 3 columns on tablets and smaller */
-    gap: 8px; /* Reduced gap for tighter fit */
-  }
-  .gallery-item img {
-    height: 150px; /* Adjusted height for 3 columns on tablets */
-  }
-  .overlay .caption {
-    font-size: 0.8rem; /* Adjusted font size for smaller images */
+    grid-template-columns: 1fr;
   }
 }
-
-@media (max-width: 480px) { /* Smaller phones */
-  .gallery-container {
-    margin: 1rem auto;
-    padding: 0.8rem; /* Further reduced padding for very small screens */
-    border-radius: 15px;
-  }
-  .gallery-container h2 {
-    font-size: 1.8rem;
-  }
-  .gallery-intro {
-    font-size: 0.9rem;
-  }
-  .photo-grid {
-    grid-template-columns: repeat(3, 1fr); /* Now 3 columns on very small phones */
-    gap: 5px; /* Even smaller gap for very tight fit */
-  }
-  .gallery-item img {
-    height: 100px; /* Adjusted height for 3 columns on small phones */
-  }
-  .overlay .caption {
-    font-size: 0.7rem; /* Adjusted font size for very small images */
-  }
-}
-
 
 
 
